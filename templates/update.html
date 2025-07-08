@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Contact</title>
+</head>
+<body>
+    <h1>Update Contact</h1>
+    <form action="/update/{{ contact[0] }}" method="post">
+        <input name="first_name" value="{{ contact[1] }}" required>
+        <input name="last_name" value="{{ contact[2] }}" required>
+        <input name="address" value="{{ contact[3] }}">
+        <input name="email" value="{{ contact[4] }}" required>
+        <input name="phone" value="{{ contact[5] }}" required>
+        <button type="submit">Update</button>
+    </form>
+    <a href="/">Back</a>
+</body>
+</html>

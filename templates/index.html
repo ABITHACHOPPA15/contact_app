@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Contact Manager</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="{{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form action="/add" method="post">
+        <input name="first_name" placeholder="First Name" required>
+        <input name="last_name" placeholder="Last Name" required>
+        <input name="address" placeholder="Address">
+        <input name="email" placeholder="Email" required>
+        <input name="phone" placeholder="Phone (10 digits)" required>
+        <button type="submit">Add Contact</button>
+    </form>
+
+    <h2>Contacts List</h2>
+    <table>
+        <tr>
+            <th>Name</th><th>Address</th><th>Email</th><th>Phone</th><th>Actions</th>
+        </tr>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{ contact[1] }} {{ contact[2] }}</td>
+            <td>{{ contact[3] }}</td>
+            <td>{{ contact[4] }}</td>
+            <td>{{ contact[5] }}</td>
+            <td>
+                <a href="/edit/{{ contact[0] }}">Edit</a> |
+                <a href="/delete/{{ contact[0] }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
